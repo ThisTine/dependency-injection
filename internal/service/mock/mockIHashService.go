@@ -39,6 +39,20 @@ func (m *MockIHashService) EXPECT() *MockIHashServiceMockRecorder {
 	return m.recorder
 }
 
+// Base64Encode mocks base method.
+func (m *MockIHashService) Base64Encode(input string) string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Base64Encode", input)
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// Base64Encode indicates an expected call of Base64Encode.
+func (mr *MockIHashServiceMockRecorder) Base64Encode(input any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Base64Encode", reflect.TypeOf((*MockIHashService)(nil).Base64Encode), input)
+}
+
 // ComparePassword mocks base method.
 func (m *MockIHashService) ComparePassword(hashedPassword, password string) bool {
 	m.ctrl.T.Helper()

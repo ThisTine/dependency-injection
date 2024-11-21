@@ -1,11 +1,16 @@
 package service
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"encoding/base64"
+
+	"golang.org/x/crypto/bcrypt"
+)
 
 //go:generate mockgen -destination=./mock/mockIHashService.go -package=mock simpleGinAPI/internal/service IHashService
 type IHashService interface {
 	HashPassword(password string) (string, error)
 	ComparePassword(hashedPassword string, password string) bool
+	Base64Encode(input string) string
 }
 
 type HashService struct {
@@ -26,4 +31,9 @@ func (hs *HashService) HashPassword(password string) (string, error) {
 func (hs *HashService) ComparePassword(hashedPassword string, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	return err == nil
+}
+
+func (hs *HashService) Base64Encode(input string) string {
+	data := base64.StdEncoding.EncodeToString([]byte(input))
+	return data
 }
