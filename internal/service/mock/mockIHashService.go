@@ -40,11 +40,12 @@ func (m *MockIHashService) EXPECT() *MockIHashServiceMockRecorder {
 }
 
 // Base64Encode mocks base method.
-func (m *MockIHashService) Base64Encode(input string) string {
+func (m *MockIHashService) Base64Encode(input string) (string, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Base64Encode", input)
 	ret0, _ := ret[0].(string)
-	return ret0
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // Base64Encode indicates an expected call of Base64Encode.

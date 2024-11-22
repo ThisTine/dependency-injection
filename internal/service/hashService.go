@@ -10,7 +10,7 @@ import (
 type IHashService interface {
 	HashPassword(password string) (string, error)
 	ComparePassword(hashedPassword string, password string) bool
-	Base64Encode(input string) string
+	Base64Encode(input string) (string, error)
 }
 
 type HashService struct {
@@ -33,7 +33,7 @@ func (hs *HashService) ComparePassword(hashedPassword string, password string) b
 	return err == nil
 }
 
-func (hs *HashService) Base64Encode(input string) string {
+func (hs *HashService) Base64Encode(input string) (string, error) {
 	data := base64.StdEncoding.EncodeToString([]byte(input))
-	return data
+	return data, nil
 }
