@@ -10,6 +10,12 @@ type Router struct {
 	authRouter AuthRouter
 }
 
+func ProvideRouter(router AuthRouter) IRouter {
+	return &Router{
+		authRouter: router,
+	}
+}
+
 func (r *Router) InitializedRouter(app *gin.Engine) {
 	r.authRouter.InitializedGroup(app)
 }

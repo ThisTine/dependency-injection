@@ -7,3 +7,25 @@ type IAuthController interface {
 	Register(ctx *gin.Context)
 	GetToken(ctx *gin.Context) string
 }
+
+type AuthController struct {
+}
+
+func ProvideAuthController() IAuthController {
+	return AuthController{}
+}
+
+func (a AuthController) Login(ctx *gin.Context) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (a AuthController) Register(ctx *gin.Context) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (a AuthController) GetToken(ctx *gin.Context) string {
+	//TODO implement me
+	panic("implement me")
+}

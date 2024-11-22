@@ -13,6 +13,12 @@ type AuthRouter struct {
 	controller controller.IAuthController
 }
 
+func ProvideAuthRouter(controller controller.IAuthController) AuthRouter {
+	return AuthRouter{
+		controller: controller,
+	}
+}
+
 func (r *AuthRouter) InitializedGroup(app *gin.Engine) {
 	userAPI := app.Group("/auth")
 	{

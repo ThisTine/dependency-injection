@@ -6,9 +6,17 @@
 
 package di
 
+import (
+	"simpleGinAPI/internal/controller"
+	"simpleGinAPI/internal/routes"
+)
+
 // Injectors from wire.go:
 
 func InitializedApp() (IPillar, error) {
-	iPillar := ProvideGinEngine()
+	iAuthController := controller.ProvideAuthController()
+	authRouter := routes.ProvideAuthRouter(iAuthController)
+	iRouter := routes.ProvideRouter(authRouter)
+	iPillar := ProvideGinEngine(iRouter)
 	return iPillar, nil
 }

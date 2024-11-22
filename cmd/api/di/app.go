@@ -2,6 +2,7 @@ package di
 
 import (
 	"github.com/gin-gonic/gin"
+	"simpleGinAPI/internal/routes"
 )
 
 type IPillar interface {
@@ -9,22 +10,23 @@ type IPillar interface {
 }
 
 type Pillar struct {
-	app *gin.Engine
+	app   *gin.Engine
+	route routes.IRouter
 }
 
 func (p *Pillar) RunApp() error {
 	p.app.Use(gin.Recovery())
 	p.app.Use(gin.Logger())
+	p.route.InitializedRouter(p.app)
 
 	return p.app.Run(":8000")
 }
 
-func ProvideGinEngine() IPillar {
+func ProvideGinEngine(route routes.IRouter) IPillar {
 	app := gin.New()
 
-	//route.InitializedRouter(app)
-
 	return &Pillar{
-		app: app,
+		app:   app,
+		route: route,
 	}
 }

@@ -6,5 +6,6 @@ import (
 )
 
 var serviceSet = wire.NewSet(
+	service.ProvideAuthService,
 	service.ProvideHashService,
 )
