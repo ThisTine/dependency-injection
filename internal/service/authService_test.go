@@ -36,7 +36,7 @@ func TestAuthService_GetToken(t *testing.T) {
 
 		assert.NoError(t, err)
 		assert.NotNil(t, token)
-		assert.Equal(t, "encodedUsername", token)
+		assert.Equal(t, "encodedUsername", *token)
 	})
 
 	t.Run("User does not exist", func(t *testing.T) {
